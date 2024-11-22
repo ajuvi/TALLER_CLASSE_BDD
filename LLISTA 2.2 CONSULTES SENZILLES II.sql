@@ -58,5 +58,42 @@ WHERE commission_pct=0.2;
 -- Ex8
 --------
 
-SELECT last_name, hire_date, YEAR(hire_date)
+SELECT last_name, hire_date
 FROM employees
+WHERE YEAR(hire_date)=1994;
+
+
+-- Ex9
+--------
+SELECT last_name, job_id
+FROM employees
+WHERE manager_id IS NULL;
+
+-- Ex10
+--------
+SELECT last_name, salary, commission_pct
+FROM employees
+WHERE commission_pct IS NOT NULL
+ORDER BY salary DESC, commission_pct DESC;
+
+-- Ex11
+--------
+
+SELECT last_name
+FROM employees
+WHERE last_name LIKE '__a%';
+
+-- Ex12
+--------
+
+SELECT last_name
+FROM employees
+WHERE last_name LIKE '%a%' AND last_name LIKE '%i%';
+
+-- Ex13
+--------
+
+SELECT last_name,job_id, salary
+FROM employees
+WHERE   job_id IN ('SA_REP', 'ST_MAN') 
+        AND salary NOT IN (2500, 3500, 7000);
