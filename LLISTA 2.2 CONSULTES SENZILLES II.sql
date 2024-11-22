@@ -53,3 +53,10 @@ WHERE salary BETWEEN 5000 AND 12000 AND department_id IN(20,50);
 SELECT last_name, salary
 FROM employees
 WHERE commission_pct=0.2;
+
+
+-- Ex8
+--------
+
+SELECT last_name, hire_date, YEAR(hire_date)
+FROM employees
