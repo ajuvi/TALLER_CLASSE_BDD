@@ -52,3 +52,14 @@ SELECT CONCAT(last_name, 'guanya', ' ', salary, ' ', 'mensualmet però li agrada
 AS dream_salaries 
 FROM employees;
 
+--EX13
+--------
+
+SELECT employee_id, CONCAT(SUBSTR(last_name,1,1), REPEAT('*',LENGTH(last_name)-1)   )
+FROM employees;
+
+--EX14
+--------
+
+SELECT last_name, hire_date, WEEKDAY(hire_date) AS dia
+FROM employees;
