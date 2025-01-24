@@ -7,6 +7,7 @@ USE db_zoo;
 SET FOREIGN_KEY_CHECKS = 0;
 
 #Eliminar les taules
+drop table animal;
 drop table zoo;
 drop table especie;
 
