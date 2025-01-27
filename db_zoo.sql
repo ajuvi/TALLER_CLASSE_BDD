@@ -47,6 +47,26 @@ create table Animal (
 
 
 #Inserció de dades
+insert into zoo (id, nom, ciutat, pais, grandaria, pressupost) 
+VALUES (1, 'Parc Zoològic de Barcelona', 'Barcelona', 'Espanya', 13, 9900000);
 
+insert into zoo (id, nom, ciutat, pais, grandaria, pressupost) 
+VALUES (2, 'Loro Parque', 'Puerto de la Cruz', 'Espanya', 13.5, 10000000);
+
+insert into zoo (id, nom, ciutat, pais, grandaria, pressupost) 
+VALUES (3, 'Zoo Aquarium de Madrid', 'Madrid', 'Espanya', 20, 15000000);
+
+insert into especie VALUES (1, 'Mallerenga blava', 'Cyanistes caeruleus', 'Paridae', 0);
+insert into especie VALUES (2, 'Orca', 'Orcinus orca', 'Delphinidae', 0);
+insert into especie VALUES (3, 'Dofí mular', 'Tursiops truncatus', 'Delphinidae', 0);
+
+insert into animal VALUES (1, 'Shira', 'F', '2015-07-02', 'Espanya','Europa', 1, 1);
+insert into animal VALUES (2, 'Nelly', 'M', '2020-02-27', 'Espanya','Europa', 1, 1);
+insert into animal VALUES (3, 'Lucky', 'F', '2017-04-25', 'Espanya','Europa', 1, 1);
+insert into animal VALUES (4, 'Splash', 'M', '2017-04-11', 'Regne Unit','Europa', 2, 2);
+insert into animal VALUES (5, 'Syrup', 'F', '2014-05-15', 'Islàndia','Europa', 2, 2);
+insert into animal VALUES (6, 'Loki', 'M', '2014-06-20', 'Regne Unit','Europa', 2, 2);
+insert into animal VALUES (7, 'Oreo', 'F', '2015-12-27', 'Espanya','Europa', 3, 3);
+insert into animal VALUES (8, 'Ace', 'M', '2015-10-11', 'Espanya','Europa', 3, 3);
 
 SET FOREIGN_KEY_CHECKS = 0;
