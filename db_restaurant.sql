@@ -15,6 +15,7 @@ drop table TaulaReserva;
 
 #Creació de taules
 
+
 create table Empleat(
 	dni varchar(10) primary key,
 	nom varchar(50) not null,

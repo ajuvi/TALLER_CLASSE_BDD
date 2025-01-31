@@ -40,9 +40,10 @@ create table Animal (
     zoo_id int,
     especie_id int,
     
-    foreign key (zoo_id) references Zoo(id),    
-    foreign key (especie_id) REFERENCES Especie(id),
-    check (sexe in ('M', 'F')) 
+    #el nom de la constraint és fk_taula_taulaRef
+    constraint fk_animal_zoo foreign key (zoo_id) references Zoo(id),    
+    constraint fk_animal_especie foreign key (especie_id) REFERENCES Especie(id),
+    constraint ck_sexe check (sexe in ('M', 'F')) 
 );
 
 

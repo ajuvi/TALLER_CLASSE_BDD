@@ -27,7 +27,10 @@ create table Ornitoleg(
 	foreign key (responsable) references ornitoleg(carnet)	
 );
    
+
+#Taula Avistament amb una clau primaria (id) subrogada
 create table Avistament(
+	id int auto_increment primary key,
 	ornitoleg_carnet int,
 	especie_codi int,
 	data datetime,
@@ -35,10 +38,22 @@ create table Avistament(
 	circumstancies varchar(500),
 	quantitat int,	
 	foreign key (ornitoleg_carnet) references ornitoleg(carnet),
-	foreign key (especie_codi) references especie(codi),
-	primary key(ornitoleg_carnet,especie_codi,data)
-
+	foreign key (especie_codi) references especie(codi)
 );
+
+
+#Taula Avistament amb una clau formada per 3 camps
+#create table Avistament(
+#	ornitoleg_carnet int,
+#	especie_codi int,
+#	data datetime,
+#	lloc varchar(150),
+#	circumstancies varchar(500),
+#	quantitat int,	
+#	foreign key (ornitoleg_carnet) references ornitoleg(carnet),
+#	foreign key (especie_codi) references especie(codi),
+#	primary key(ornitoleg_carnet,especie_codi,data)
+#);
 
 #Inserció de dades
 
