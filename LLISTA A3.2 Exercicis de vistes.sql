@@ -90,3 +90,14 @@ from employees e
 join departments d on(d.department_id = e.department_id)
 group by e.department_id, d.department_name;
 
+#Ex8
+
+create or replace view viewNombreEmpleatsRegio as
+select r.region_name, count(employee_id) as num_empleats
+from employees e
+join departments d on(d.department_id = e.department_id)
+join locations l on(l.location_id = d.location_id)
+join countries c on(c.country_id = l.country_id)
+join regions r on(r.region_id = c.region_id)
+group by r.region_name;
+
