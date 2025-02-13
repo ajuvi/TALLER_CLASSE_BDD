@@ -101,3 +101,63 @@ join countries c on(c.country_id = l.country_id)
 join regions r on(r.region_id = c.region_id)
 group by r.region_name;
 
+#Ex9
+
+create or replace view viewNombreEmpleatsRegio as
+select r.region_name, count(employee_id) as num_empleats
+from employees e
+join departments d on(d.department_id = e.department_id)
+join locations l on(l.location_id = d.location_id)
+join countries c on(c.country_id = l.country_id)
+join regions r on(r.region_id = c.region_id)
+group by r.region_name;
+
+select * from viewNombreEmpleatsRegio;
+
+#Ex10
+
+create or replace view viewEmpleatsEuropa as
+select e.employee_id, e.last_name
+from employees e
+join departments d on(d.department_id = e.department_id)
+join locations l on(l.location_id = d.location_id)
+join countries c on(c.country_id = l.country_id)
+join regions r on(r.region_id = c.region_id)
+where r.region_name = 'Europe';
+
+select * from viewEmpleatsEuropa;
+
+
+#Ex11
+
+create or replace view viewManagers as
+select employee_id, last_name
+from employees
+where employee_id in (select distinct manager_id
+					  from employees);
+
+select * from viewManagers;
+
+#el mateix fet amb join
+create or replace view viewManagers as
+select distinct man.employee_id, man.last_name
+from employees e
+join employees man on(e.manager_id = man.employee_id);
+
+select * from viewManagers;
+
+
+#Ex12
+
+create or replace view viewEmpleatsMesBenPagats as
+select e.employee_id, e.last_name
+from employees e 
+where salary > (select avg(e2.salary)
+				from employees e2
+				where e.department_id = e2.department_id);
+
+select * from viewEmpleatsMesBenPagats;
+
+
+
+
