@@ -217,3 +217,21 @@ delimiter ;
 select department_name, avgSalariDept(department_id) as mitjana_salari
 from departments;
 
+delimiter //
+
+create or replace function deptIdEmpleat(p_empId int)
+returns int
+begin 
+	declare v_depId int;
+	 
+	select department_id into v_depId
+	from employees
+	where employee_id = p_empId;
+	
+	return v_depId;
+end;
+
+delimiter ;
+
+select deptIdEmpleat(100)
+from dual;
