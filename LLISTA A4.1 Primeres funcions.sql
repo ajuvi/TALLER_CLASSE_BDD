@@ -89,3 +89,131 @@ end;
 //
 
 delimiter ;
+
+delimiter //
+
+create or replace function volumEsfera(p_radi decimal(11,2))
+returns decimal(11,2)
+begin 
+	declare v_volum decimal(11,2);
+
+	#set v_volum = (4/3)*pi()*power(p_radi,3);
+	set v_volum = (4/3)*pi()*p_radi*p_radi*p_radi;
+	return v_volum;
+end;
+
+delimiter ;
+
+select volumEsfera(5)
+from dual;
+
+delimiter //
+
+create or replace function existeixEmpleat(p_empId int)
+returns bool
+begin 
+	declare v_result bool;	
+
+	set v_result = exists(select * from employees
+						  where employee_id=p_empId);
+	return v_result;
+end;
+
+//
+
+
+delimiter ;
+
+select existeixEmpleat(100)
+from dual;
+
+select existeixEmpleat(10)
+from dual;
+
+delimiter //
+
+create or replace function existeixEmpleat2(p_empId int)
+returns bool
+begin 
+	declare v_count int;	
+
+	select count(*) into v_count
+	from employees
+	where employee_id=p_empId;
+
+	return v_count=1;
+end;
+
+//
+
+
+select existeixEmpleat2(100)
+from dual;
+
+select existeixEmpleat2(10)
+from dual;
+
+create or replace function existeixEmpleat3(p_empId int)
+returns bool
+begin 
+	declare v_id int;	
+
+	select employee_id into v_id
+	from employees
+	where employee_id=p_empId;
+
+	return v_id is not null;
+end;
+
+//
+
+select existeixEmpleat3(100)
+from dual;
+
+select existeixEmpleat3(10)
+from dual;
+
+delimiter //
+
+create or replace function salaryTotal(p_empId int)
+returns decimal(11,2)
+begin 
+	declare v_total decimal(11,2) default -1;
+	
+	if existeixEmpleat(p_empId) then
+		select salary*(1+coalesce(commission_pct,0))m into v_total
+		from employees
+		where employee_id = p_empId;	
+	end if;
+
+	return v_total;
+
+end;
+
+//
+
+delimiter ;
+
+select last_name, salaryTotal(employee_id) as salariTotal
+from employees;
+
+
+delimiter //
+
+create or replace function avgSalariDept(p_deptId int)
+returns decimal(11,2)
+begin 
+	declare v_mitjanaSalari decimal(11,2);
+
+	select avg(salary) into v_mitjanaSalari
+	from employees
+	where department_id=p_deptId;
+
+	return v_mitjanaSalari;
+end;
+
+delimiter ;
+
+select department_name, avgSalariDept(department_id) as mitjana_salari
+from departments;
+
