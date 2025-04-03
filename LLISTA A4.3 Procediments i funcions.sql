@@ -50,6 +50,38 @@ end;
 select estadistiquesEmpleats()
 from dual;
 
+create or replace procedure actualitzarComissio()
+begin
+	
+	declare v_affectedRows int;
+
+	update employees e
+	set e.commission_pct = datediff(curdate(),e.hire_date)/365.25/100*decode_oracle(e.job_id,
+																			'AD_PRES',0.8,
+																			'SA_MAN',0.5,
+																			'IT_PROG',0.4,
+																			'MK_MAN',0.2,
+																			0.1);
+	set v_affectedRows = ROW_COUNT();
+	
+	select concat('Rows updated ',v_affectedRows) as resultat;
+	
+	commit;	
+end;
+
+call actualitzarComissio();
+
+
+select employee_id, commission_pct
+from employees
+
+begin not atomic
+	declare v_txt varchar(255) default '';
+	set v_txt = '<html border=\'1\'>\n';
+
+	select v_txt;
+end;
+
 
 
 
