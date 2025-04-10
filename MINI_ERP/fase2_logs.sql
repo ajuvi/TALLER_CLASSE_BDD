@@ -39,14 +39,14 @@ CREATE OR REPLACE PACKAGE BODY pkg_logs
 
     PROCEDURE error (p_missatge  type of logs.missatge)
     BEGIN
-	    INSERT INTO logs (id, tipus, missatge, data)
+	INSERT INTO logs (id, tipus, missatge, data)
         VALUES (NEXTVAL(seq_logs) ,'error', p_missatge, default);
     END;
 
     PROCEDURE mostrar ()
     BEGIN
 		SELECT * FROM logs;
-	END;
+    END;
    
     PROCEDURE mostrar2 (p_num int)
     BEGIN
